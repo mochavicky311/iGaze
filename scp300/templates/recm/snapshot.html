@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <p id="system">Recommendation System</p>
+    <p id="instruct">Please take a snapshot of your front face</p>
+    <form hidden id="form" name="img" enctype="multipart/form-data"></form>
+
+
+    <div id="buttons">
+        <button id='snap'>snap</button>
+        <button id='send'>send</button>
+    </div>
+    <br>
+    <div id="snaped">
+    <video id="video" autoplay></video>
+    <canvas id="canvas"></canvas>
+    </div>
+    
+    <script src="{{ url_for('static',filename='recm/js/video.js') }}"></script>
+    <script>
+        setupVideo();  
+        setupSnapBtn();  
+        setupSendBtn();
+    </script>
+    <style>
+        #video{
+            margin-left: auto;
+            margin-right: auto;
+            width: 42%;
+            transform: rotateY(180deg);
+			-webkit-transform: rotateY(180deg);
+           
+        }
+
+        #canvas{
+            margin-left: auto;
+            margin-right: auto;
+            width: 42%;
+            -webkit-transform: scaleX(-1);
+            transform: scaleX(-1);
+          
+        }
+
+        #snaped{
+            display: flex;
+            width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+            
+        }
+
+        #buttons{
+            display: flex;
+        }
+
+        #buttons>button{
+            all:unset;
+            margin-left: auto;
+            margin-right:auto;
+            
+            background-color: #000000;
+            color: #fff; 
+            padding: 4px 12px;
+            border-radius: 10px;
+            box-shadow: 1px 1px 4px #ccc;
+            font-size: 1.2em;
+            font-weight: 600px; 
+            width: 100px;
+            height: 30px;
+            text-align: center; 
+            overflow-wrap: break-word;
+        }
+
+        #buttons>button:hover{
+            background-color:rgb(101, 131, 101);
+            font-size: 1.3em;
+            font-weight: 650px;
+        }
+
+        #system{
+            padding-top: 12px;
+            font-size: 1.2em;
+            font-weight: 600;
+            text-align: center;
+        }
+        #instruct{
+            font-size: 1.1em;
+            font-weight: 500;
+            text-align: center;
+        }
+        p{
+            line-height: 0.5;
+        }
+    </style>
+{% endblock %}

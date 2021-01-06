@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+
+{% block css %}
+    <link rel='stylesheet' type='text/css' href='{{ url_for("static",filename="recm/css/result.css") }}'>
+{% endblock%}
+
+{% block content %}
+    <div id="h" style="display: flex;">
+        <img id='snap' src="{{  url_for('static',filename='recm/save/face.jpg') }}?dummy={{rand}}">
+        <div id="result"> 
+            <p id="res">Your Faceshape: {{ shape }}</p>
+            <p id="below">Below is the similar face shape:</p>
+        </div>
+       
+       
+    </div> 
+    <hr>
+   
+    <!-- display all the faces here with there url link -->
+
+    <div id='container'>
+        {% if faces %}
+        {% for face in faces %}
+        <div class="face_container">
+            {% with url = url_for('static',filename= face.imageURL) %}
+            <div class="item">
+                    <img class="face" src='{{ url }}'>
+                    <p>#{{ face.specShape }} #{{ face.specColor }}</p>
+            </div>
+           
+
+            {% endwith %}
+        </div>
+
+        {% endfor %}
+        {% endif %}
+
+    </div>
+  
+{% endblock %}

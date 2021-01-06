@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>iGaze System</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='style.css') }}">
+        {% block css %}
+        {% endblock %}
+
+    </head>
+    <body>
+        <!-- the banner part of the webpage -->
+        <!-- insert one image here -->
+        <div style="display: flex;"> 
+            <a href='{{ url_for("main.index") }}' style="text-decoration:none;"><input type="button" id="home" value="Home" ></a>
+            <h1 id="banner"> iGaze Augmented Reality Glass Fitting System </h1>
+             
+        </div>
+       
+        <hr>
+        <!-- content to be override by the child template -->
+        <div id="content">
+            <br>
+                {% block content %}
+                {% endblock %}
+            <br>
+        </div>
+        <!-- footer -->
+       
+        <div id="footer" style="font-size:12px;"> 
+                <p>Copyright &copy; (2019) Andrew Hii Chii Leong, Yew Vicky, Chia Jia Le
+                <br>CAT300 Group Innovation Project, Academic Session 2019/2020, Semester 1</p>
+        </div>
+
+
+        
+    </body>
+</html>

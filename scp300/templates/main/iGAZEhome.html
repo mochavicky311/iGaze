@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>iGaze HOME</title>
+        <link rel="stylesheet" type="text/css" href=" {{ url_for('static',filename='main/home.css')}} ">
+    </head>
+    <body>
+        <style>
+            a{
+                text-decoration:none;
+            }
+        </style>
+        <!-- <img id="image" src="transwall.png"> -->
+       
+        <div id="title">
+            <h1 id="igaze">iGaze</h1>
+            <h3 id="about">Immersive Eyewear Fitting System</h3>
+        </div>
+        
+        <div id="buttons">
+            <div><a href='{{ url_for("recm.snap") }}'><input id="rec" type="button" value="Recommend Eyewear"></a></div>
+            <div><a href='{{ url_for("main.search") }}'><input id="search" type="button" value="Search Eyewear"></a></div>
+            <div><a href='{{ url_for("main.fit") }}'><input id="fit" type="button" value="Fit Eyewear"></a></div>
+        </div>
+        
+        <div id="footer" style="font-size:12px;">
+                <p>Copyright &copy; (2019) Andrew Hii Chii Leong, Yew Vicky, Chia Jia Le
+                <br>CAT300 Group Innovation Project, Academic Session 2019/2020, Semester 1</p>
+        </div>
+        
+    </body>
+</html>

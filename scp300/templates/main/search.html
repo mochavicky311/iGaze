@@ -1,0 +1,177 @@
+{% extends "base.html" %}
+{% block content %}
+<section>
+    <div>
+        <form id="filterform" name="filter" enctype="multipart/form-data" method="POST" action="">
+            <select name='color' id="colorlist">
+                <option value="none">none</option>
+                {% if colors %}
+                {% for color in colors %}
+                <option value="{{  color.specColor  }}">{{ color.specColor  }}</option>
+                {% endfor %}
+                {% endif %}
+            </select>
+            <select name='shape'id="framelist">
+                <option value="none">none</option>
+                {% if shapes %}
+                {% for shape in shapes %}
+                <option value="{{ shape.specShape }}">{{ shape.specShape }}</option>
+                {% endfor %}
+                {% endif %}
+            </select>
+            <input id='submit' type='submit' value='search'>
+        </form>
+    </div>
+    <div>
+        {% if previous %}
+            <p>Color: {{previous['color']}} Shape: {{previous['shape']}} </p>
+        {% endif %}
+
+        {% if specs %}
+            <p>number of result:{{ specs|length }}</p>
+            <div id="resultlist" >
+                {% for spec in specs %}
+                <!-- <div > -->
+                        {% with iurl = url_for ('static',filename=spec.imageURL)  %}
+                        {% with surl = spec.shoppingURL %}
+                        <div > 
+                            <div id="item"><a href="{{ surl }}"><img id="picture" src="{{ iurl }}"></a></div>
+                            <p>Color:{{ spec.specColor }}
+                            <br>Shape:{{ spec.specShape }}</p>
+                        </div>
+                           
+                        
+                    {% endwith %}
+                    {% endwith %}
+                    <!-- </div> -->
+                {% endfor %}
+            </div>
+        {% endif%}
+
+
+    </div>
+</section>
+
+<style>
+        #colorlist {
+        background-color: rgb(101, 131, 101);
+        color: #fff;
+        padding: 6px 12px;
+        border-radius: 5px;
+        box-shadow: 1px 1px 4px #ccc;
+        font-size: 1em;
+        font-weight: 520;
+        text-align: center;
+        width: 110px;
+      }
+
+      #framelist {
+        background-color: rgb(101, 131, 101);
+        color: #fff;
+        padding: 6px 12px;
+        border-radius: 5px;
+        box-shadow: 1px 1px 4px #ccc;
+        font-size: 1em;
+        font-weight: 520;
+        text-align: center;
+        width: 110px;
+      }
+
+      #submit{
+        all:unset;
+        margin-left: auto;
+        margin-right:auto;
+        
+        background-color: #000000;
+        color: #fff; 
+        padding: 4px 12px;
+        border-radius: 5px;
+        box-shadow: 1px 1px 4px #ccc;
+        font-size: 1em;
+        font-weight: 600px; 
+        width: 100px;
+        height: 30px;
+        text-align: center; 
+        overflow-wrap: break-word;
+    }
+
+    #submit:hover{
+        background-color:rgb(101, 131, 101);
+        font-weight: 650px;
+    }
+
+    option:hover{
+        background-color: darkseagreen;
+    }
+
+    #picture{
+        width:50%;
+        height:100%;
+        margin-left: 25%; 
+    }
+
+    #resultlist{
+        height:500px;
+        overflow: auto;
+        display: flex;  
+        flex-wrap: wrap;
+    }
+    #resultlist>div{
+     width: 30%;
+     height: 45%;
+     margin-left: auto;
+     margin-right: auto;
+     padding: 10px;
+     background-color:rgba(255,255,255,0.8) ;
+     border-radius: 40px;
+     margin: 5px;
+    }
+
+    #resultlist>div>p{
+     text-align: center;
+     width: 30%;
+     margin-left: auto;
+     margin-right: auto;  
+    line-height: 1;  }
+
+    
+
+    #resultlist>div>a{
+     width: 30%;
+     margin-left: auto;
+     margin-right: auto;   
+     right:0;
+    align-self: center;
+    align-content: center;
+}
+
+    p{
+        line-height: 0.5;
+        text-align: center;
+    }
+
+    #item{
+        margin: auto;
+        height: 80%;
+        width: 80%;
+    }
+
+    ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px darkseagreen;
+    border-radius: 10px;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgb(101, 131, 101);
+    border-radius: 10px;
+  }
+      
+</style>
+{% endblock %}
+
